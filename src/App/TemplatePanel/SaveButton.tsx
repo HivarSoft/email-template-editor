@@ -1,16 +1,69 @@
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 
 import { SaveSharp } from '@mui/icons-material';
 import { IconButton, Snackbar, Tooltip } from '@mui/material';
+import { renderToStaticMarkup } from '@usewaypoint/email-builder';
 
-import { useDocument } from '../../documents/editor/EditorContext';
+import { useDocument, useVariables } from '../../documents/editor/EditorContext';
+import { TEditorConfiguration } from '../../documents/editor/core';
+import { extractVariablesFromDocument } from '../../utils/variables';
 
-export default function SaveButton() {
+interface SaveButtonProps {
+  onSave?: (blockTemplate: TEditorConfiguration, htmlTemplate: string, variables: Record<string, string>) => void;
+}
+
+export default function SaveButton({ onSave }: SaveButtonProps) {
   const document = useDocument();
+  const variables = useVariables();
   const [message, setMessage] = useState<string | null>(null);
 
+  // Generate HTML template
+  const htmlTemplate = useMemo(() => {
+    return renderToStaticMarkup(document, { rootBlockId: 'root' });
+  }, [document]);
+
+  // Extract all variables from document
+  const documentVariables = useMemo(() => {
+    return extractVariablesFromDocument(document);
+  }, [document]);
+
+  // Merge document variables with current variable values
+  const allVariables = useMemo(() => {
+    const merged: Record<string, string> = {};
+    
+    // Add all variables found in document with their current values or empty string
+    documentVariables.forEach(varName => {
+      merged[varName] = variables[varName] || '';
+    });
+    
+    // Add any additional variables that might be set but not in document
+    Object.keys(variables).forEach(varName => {
+      if (!(varName in merged)) {
+        merged[varName] = variables[varName];
+      }
+    });
+    
+    return merged;
+  }, [documentVariables, variables]);
+
   const onClick = async () => {
-      // callOnsaveFrom Prop in App
+    try {
+      // Log all three: block template, HTML template, and variables
+      console.log('Block Template:', document);
+      console.log('HTML Template:', htmlTemplate);
+      console.log('Variables:', allVariables);
+      
+      // Call the onSave function if provided with all three parameters
+      if (onSave) {
+        onSave(document, htmlTemplate, allVariables);
+        setMessage('Template saved successfully!');
+      } else {
+        setMessage('No save handler provided');
+      }
+    } catch (error) {
+      console.error('Error saving template:', error);
+      setMessage('Error saving template');
+    }
   };
 
   const onClose = () => {

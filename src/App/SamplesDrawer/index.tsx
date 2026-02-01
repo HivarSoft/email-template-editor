@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 
-import { Drawer, Stack, Typography } from '@mui/material';
+import { EditOutlined, CheckOutlined, CloseOutlined } from '@mui/icons-material';
+import { Drawer, Stack, Typography, IconButton, TextField, Box } from '@mui/material';
 
 import { useSamplesDrawerOpen } from '../../documents/editor/EditorContext';
 
@@ -8,8 +9,40 @@ import SidebarButton from './SidebarButton';
 
 export const SAMPLES_DRAWER_WIDTH = 240;
 
-export default function SamplesDrawer() {
+interface SamplesDrawerProps {
+  templateName?: string;
+  onTemplateNameChange?: (name: string) => void;
+}
+
+export default function SamplesDrawer({ templateName = "Template Name", onTemplateNameChange }: SamplesDrawerProps) {
   const samplesDrawerOpen = useSamplesDrawerOpen();
+  const [isEditing, setIsEditing] = useState(false);
+  const [editValue, setEditValue] = useState(templateName);
+
+  const handleStartEdit = () => {
+    setEditValue(templateName);
+    setIsEditing(true);
+  };
+
+  const handleSaveEdit = () => {
+    if (onTemplateNameChange && editValue.trim()) {
+      onTemplateNameChange(editValue.trim());
+    }
+    setIsEditing(false);
+  };
+
+  const handleCancelEdit = () => {
+    setEditValue(templateName);
+    setIsEditing(false);
+  };
+
+  const handleKeyPress = (e: React.KeyboardEvent) => {
+    if (e.key === 'Enter') {
+      handleSaveEdit();
+    } else if (e.key === 'Escape') {
+      handleCancelEdit();
+    }
+  };
 
   return (
     <Drawer
@@ -22,9 +55,37 @@ export default function SamplesDrawer() {
     >
       <Stack spacing={3} py={1} px={2} width={SAMPLES_DRAWER_WIDTH} justifyContent="space-between" height="100%">
         <Stack spacing={2} sx={{ '& .MuiButtonBase-root': { width: '100%', justifyContent: 'flex-start' } }}>
-          <Typography variant="h5" component="h1" sx={{ p: 0.75 }}>
-            Email Builder
-          </Typography>
+          {/* Editable Template Name */}
+          <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, p: 0.75 }}>
+            {isEditing ? (
+              <>
+                <TextField
+                  value={editValue}
+                  onChange={(e) => setEditValue(e.target.value)}
+                  onKeyDown={handleKeyPress}
+                  variant="outlined"
+                  size="small"
+                  autoFocus
+                  sx={{ flex: 1 }}
+                />
+                <IconButton size="small" onClick={handleSaveEdit} color="primary">
+                  <CheckOutlined fontSize="small" />
+                </IconButton>
+                <IconButton size="small" onClick={handleCancelEdit}>
+                  <CloseOutlined fontSize="small" />
+                </IconButton>
+              </>
+            ) : (
+              <>
+                <Typography variant="h5" component="h1" sx={{ flex: 1 }}>
+                  {templateName}
+                </Typography>
+                <IconButton size="small" onClick={handleStartEdit}>
+                  <EditOutlined fontSize="small" />
+                </IconButton>
+              </>
+            )}
+          </Box>
 
           <Typography sx={{ p: 0.75, color: 'primary.main' }} variant="h6">Examples</Typography>
           <Stack alignItems="flex-start">

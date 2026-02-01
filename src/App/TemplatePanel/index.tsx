@@ -11,6 +11,7 @@ import {
   useSelectedMainTab,
   useSelectedScreenSize,
 } from '../../documents/editor/EditorContext';
+import { TEditorConfiguration } from '../../documents/editor/core';
 import ToggleInspectorPanelButton from '../InspectorDrawer/ToggleInspectorPanelButton';
 import ToggleSamplesPanelButton from '../SamplesDrawer/ToggleSamplesPanelButton';
 
@@ -21,7 +22,11 @@ import JsonPanel from './JsonPanel';
 import MainTabsGroup from './MainTabsGroup';
 import SaveButton from './SaveButton';
 
-export default function TemplatePanel() {
+interface TemplatePanelProps {
+  onSave?: (blockTemplate: TEditorConfiguration, htmlTemplate: string, variables: Record<string, string>) => void;
+}
+
+export default function TemplatePanel({ onSave }: TemplatePanelProps) {
   const document = useDocument();
   const selectedMainTab = useSelectedMainTab();
   const selectedScreenSize = useSelectedScreenSize();
@@ -109,7 +114,7 @@ export default function TemplatePanel() {
                 </Tooltip>
               </ToggleButton>
             </ToggleButtonGroup>
-            <SaveButton/>
+            <SaveButton onSave={onSave} />
           </Stack>
         </Stack>
         <ToggleInspectorPanelButton />
