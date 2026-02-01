@@ -18,7 +18,7 @@ type TValue = {
 };
 
 const editorStateStore = create<TValue>(() => ({
-  document: getConfiguration(window.location.hash),
+  document: getConfiguration(typeof window !== 'undefined' ? window.location.hash : ''),
   variables: {},
   selectedBlockId: null,
   selectedSidebarTab: 'styles',

@@ -47,18 +47,10 @@ export default function SaveButton({ onSave }: SaveButtonProps) {
   }, [documentVariables, variables]);
 
   const onClick = async () => {
-    try {
-      // Log all three: block template, HTML template, and variables
-      console.log('Block Template:', document);
-      console.log('HTML Template:', htmlTemplate);
-      console.log('Variables:', allVariables);
-      
+    try {      
       // Call the onSave function if provided with all three parameters
       if (onSave) {
         onSave(document, htmlTemplate, allVariables);
-        setMessage('Template saved successfully!');
-      } else {
-        setMessage('No save handler provided');
       }
     } catch (error) {
       console.error('Error saving template:', error);

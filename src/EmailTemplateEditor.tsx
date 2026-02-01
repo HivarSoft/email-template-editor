@@ -47,3 +47,6 @@ export default function EmailTemplateEditor({
     </ThemeProvider>
   );
 }
+
+// Also export as named export for better compatibility
+export { EmailTemplateEditor };

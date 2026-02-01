@@ -54,7 +54,7 @@ export default function SamplesDrawer({ templateName = "Template Name", onTempla
       }}
     >
       <Stack spacing={3} py={1} px={2} width={SAMPLES_DRAWER_WIDTH} justifyContent="space-between" height="100%">
-        <Stack spacing={2} sx={{ '& .MuiButtonBase-root': { width: '100%', justifyContent: 'flex-start' } }}>
+        <Stack spacing={2} >
           {/* Editable Template Name */}
           <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, p: 0.75 }}>
             {isEditing ? (
@@ -68,12 +68,12 @@ export default function SamplesDrawer({ templateName = "Template Name", onTempla
                   autoFocus
                   sx={{ flex: 1 }}
                 />
-                <IconButton size="small" onClick={handleSaveEdit} color="primary">
-                  <CheckOutlined fontSize="small" />
-                </IconButton>
-                <IconButton size="small" onClick={handleCancelEdit}>
-                  <CloseOutlined fontSize="small" />
-                </IconButton>
+                <Box sx={{cursor:"pointer"}} onClick={handleSaveEdit}>
+                  <CheckOutlined sx={{fill:"#70c889ff"}} fontSize="small" />
+                </Box>
+                <Box sx={{cursor:"pointer"}}  onClick={handleCancelEdit}>
+                  <CloseOutlined sx={{fill:"#e95d5dff"}} fontSize="small" />
+                </Box>
               </>
             ) : (
               <>

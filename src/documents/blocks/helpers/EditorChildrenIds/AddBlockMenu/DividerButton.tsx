@@ -11,6 +11,8 @@ export default function DividerButton({ buttonElement, onClick }: Props) {
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
+    if (typeof window === 'undefined') return;
+    
     function listener({ clientX, clientY }: MouseEvent) {
       if (!buttonElement) {
         return;

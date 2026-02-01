@@ -29,6 +29,8 @@ export default function HighlightedCodePanel({ type, value }: TextEditorPanelPro
       style={{ margin: 0, padding: 16 }}
       dangerouslySetInnerHTML={{ __html: code }}
       onClick={(ev) => {
+        if (typeof window === 'undefined') return;
+        
         const s = window.getSelection();
         if (s === null) {
           return;
