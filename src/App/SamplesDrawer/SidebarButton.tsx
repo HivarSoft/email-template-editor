@@ -10,7 +10,18 @@ export default function SidebarButton({ href, children }: { href: string; childr
     resetDocument(getConfiguration(href));
   };
   return (
-    <Button size="small" href={href} onClick={handleClick}>
+    <Button 
+      size="small" 
+      href={href} 
+      onClick={handleClick}
+      sx={{
+        width: '100%',
+        justifyContent: 'flex-start',
+        textAlign: 'left',
+        px: 1,
+        textTransform: 'none'
+      }}
+    >
       {children}
     </Button>
   );
