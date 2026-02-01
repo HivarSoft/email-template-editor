@@ -1,18 +1,56 @@
 {
-  "name": "@usewaypoint/vite-emailbuilder",
+  "name": "@devhiteshk/email-template-editor",
   "version": "1.0.0",
+  "description": "A complete React email template editor with Material-UI theming",
   "type": "module",
+  "main": "./dist/email-template-editor.umd.cjs",
+  "module": "./dist/email-template-editor.js",
+  "types": "./dist/email-template-editor.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/email-template-editor.js",
+      "require": "./dist/email-template-editor.umd.cjs",
+      "types": "./dist/email-template-editor.d.ts"
+    }
+  },
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "prepublishOnly": "npm run build"
   },
-  "private": true,
+  "keywords": [
+    "email",
+    "template",
+    "editor",
+    "react",
+    "material-ui",
+    "wysiwyg",
+    "email-builder",
+    "drag-drop"
+  ],
+  "author": "Hitesh Kumar <dev.hitesh.k@gmail.com>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/devhiteshk/email-template-editor.git"
+  },
+  "homepage": "https://github.com/devhiteshk/email-template-editor#readme",
+  "bugs": {
+    "url": "https://github.com/devhiteshk/email-template-editor/issues"
+  },
+  "peerDependencies": {
+    "react": ">=16.8.0",
+    "react-dom": ">=16.8.0",
+    "@mui/material": ">=5.0.0",
+    "@emotion/react": ">=11.0.0",
+    "@emotion/styled": ">=11.0.0",
+    "@mui/icons-material": ">=5.0.0"
+  },
   "dependencies": {
-    "@emotion/react": "^11.11.3",
-    "@emotion/styled": "^11.11.0",
-    "@mui/icons-material": "^5.15.10",
-    "@mui/material": "^5.15.10",
     "@usewaypoint/block-avatar": "^0.0.3",
     "@usewaypoint/block-button": "^0.0.3",
     "@usewaypoint/block-columns-container": "^0.0.3",
@@ -27,9 +65,7 @@
     "@usewaypoint/email-builder": "^0.0.9",
     "highlight.js": "^11.9.0",
     "prettier": "^3.2.5",
-    "react": "^18.2.0",
     "react-colorful": "^5.6.1",
-    "react-dom": "^18.2.0",
     "zod": "^3.22.4",
     "zustand": "^4.5.1"
   },
@@ -44,6 +80,12 @@
     "eslint-plugin-react-refresh": "^0.4.5",
     "eslint-plugin-simple-import-sort": "^12.0.0",
     "typescript": "^5.2.2",
-    "vite": "^5.1.0"
+    "vite": "^5.1.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "@emotion/react": "^11.11.3",
+    "@emotion/styled": "^11.11.0",
+    "@mui/icons-material": "^5.15.10",
+    "@mui/material": "^5.15.10"
   }
 }
