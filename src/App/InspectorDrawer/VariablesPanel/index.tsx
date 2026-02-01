@@ -86,7 +86,7 @@ export default function VariablesPanel() {
       
       <Typography variant="body2" color="text.secondary" sx={{ mb: 3 }}>
         Variables are placeholders in your template marked with double curly braces like {`{{name}}`}.
-        Set their values here to see how they'll appear in your email.
+        These variables map with system variables
       </Typography>
 
       <Stack spacing={2}>

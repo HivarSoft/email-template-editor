@@ -20,8 +20,8 @@ export default function SaveButton() {
   return (
     <>
       <IconButton onClick={onClick}>
-        <Tooltip title="Share current template">
-          <SaveSharp fontSize="small" />
+        <Tooltip title="Save email template">
+          <SaveSharp sx={{color:"purple.500"}} fontSize="small" />
         </Tooltip>
       </IconButton>
       <Snackbar
