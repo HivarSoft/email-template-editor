@@ -13,9 +13,10 @@ interface SamplesDrawerProps {
   templateName?: string;
   onTemplateNameChange?: (name: string) => void;
   headerHeight?: number;
+  marginLeftApp?: number
 }
 
-export default function SamplesDrawer({ templateName = "Template Name", onTemplateNameChange, headerHeight = 0 }: SamplesDrawerProps) {
+export default function SamplesDrawer({ templateName = "Template Name", onTemplateNameChange, headerHeight = 0, marginLeftApp = 0 }: SamplesDrawerProps) {
   const samplesDrawerOpen = useSamplesDrawerOpen();
   const [isEditing, setIsEditing] = useState(false);
   const [editValue, setEditValue] = useState(templateName);

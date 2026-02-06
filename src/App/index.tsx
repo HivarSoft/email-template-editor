@@ -24,6 +24,7 @@ interface AppProps {
   templateName?: string;
   htmlTemplate?: string;
   headerHeight?: number;
+  marginLeftApp?: number;
   onSave?: (blockTemplate: TEditorConfiguration, htmlTemplate: string, variables: Record<string, string>, templateName: string) => void;
 }
 
@@ -32,6 +33,7 @@ export default function App({
   templateName: initialTemplateName = "Untitled Template", 
   htmlTemplate, 
   headerHeight = 0,
+  marginLeftApp = 0,
   onSave
 }: AppProps) {
   const inspectorDrawerOpen = useInspectorDrawerOpen();
@@ -107,6 +109,7 @@ export default function App({
         templateName={templateName}
         onTemplateNameChange={handleTemplateNameChange}
         headerHeight={headerHeight}
+        marginLeftApp={marginLeftApp}
       />
 
       <Stack

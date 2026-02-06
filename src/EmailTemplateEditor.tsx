@@ -10,6 +10,7 @@ export interface EmailTemplateEditorProps {
   template?: TEditorConfiguration;
   templateName?: string;
   headerHeight?: number;
+  marginLeftApp?: number;
   onSave?: (blockTemplate: TEditorConfiguration, htmlTemplate: string, variables: Record<string, string>, templateName: string) => void;
 }
 /**
@@ -37,6 +38,7 @@ export default function EmailTemplateEditor({
   template, 
   templateName = "Untitled Template",
   headerHeight = 0,
+  marginLeftApp = 0,
   onSave 
 }: EmailTemplateEditorProps) {
   return (
@@ -46,6 +48,7 @@ export default function EmailTemplateEditor({
         template={template} 
         templateName={templateName}
         headerHeight={headerHeight}
+        marginLeftApp={marginLeftApp}
         onSave={onSave}
       />
     </ThemeProvider>
