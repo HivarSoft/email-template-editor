@@ -1,6 +1,6 @@
 {
   "name": "@devhiteshk/email-template-editor",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "A complete React email template editor with Material-UI theming",
   "type": "module",
   "main": "./dist/email-template-editor.umd.cjs",
