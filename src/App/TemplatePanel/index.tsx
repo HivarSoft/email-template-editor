@@ -21,6 +21,7 @@ import ImportJson from './ImportJson';
 import JsonPanel from './JsonPanel';
 import MainTabsGroup from './MainTabsGroup';
 import SaveButton from './SaveButton';
+import BackButton from '../SamplesDrawer/BackButton';
 
 interface TemplatePanelProps {
   onSave?: (blockTemplate: TEditorConfiguration, htmlTemplate: string, variables: Record<string, string>) => void;
@@ -95,6 +96,7 @@ export default function TemplatePanel({ onSave }: TemplatePanelProps) {
         alignItems="center"
       >
         <ToggleSamplesPanelButton />
+        <BackButton/>
         <Stack px={2} direction="row" gap={2} width="100%" justifyContent="space-between" alignItems="center">
           <Stack direction="row" spacing={2}>
             <MainTabsGroup />
