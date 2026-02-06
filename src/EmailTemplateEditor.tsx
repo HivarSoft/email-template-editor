@@ -6,7 +6,7 @@ import App from './App';
 import theme from './theme';
 
 // Component interface
-interface EmailTemplateEditorProps {
+export interface EmailTemplateEditorProps {
   template?: TEditorConfiguration;
   templateName?: string;
   headerHeight?: number;

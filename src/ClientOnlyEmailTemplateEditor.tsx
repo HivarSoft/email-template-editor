@@ -6,6 +6,7 @@ interface EmailTemplateEditorProps {
   template?: TEditorConfiguration;
   templateName?: string;
   onSave?: (blockTemplate: TEditorConfiguration, htmlTemplate: string, variables: Record<string, string>, templateName: string) => void;
+  headerHeight?: number;
 }
 
 /**
