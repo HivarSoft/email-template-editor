@@ -156,7 +156,7 @@ The editor comes with a complete purple-themed Material-UI design system. All co
 
 ## License
 
-MIT © [Your Name]
+MIT © [devhiteshk]
 
 ## Support
 

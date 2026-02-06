@@ -9,6 +9,7 @@ import theme from './theme';
 interface EmailTemplateEditorProps {
   template?: TEditorConfiguration;
   templateName?: string;
+  headerHeight?: number;
   onSave?: (blockTemplate: TEditorConfiguration, htmlTemplate: string, variables: Record<string, string>, templateName: string) => void;
 }
 /**
@@ -29,11 +30,13 @@ interface EmailTemplateEditorProps {
  * @param template - Optional initial template configuration
  * @param templateName - Optional initial template name (defaults to "Untitled Template")
  * @param onSave - Callback function called on both manual and auto saves
+ * @param headerHeight - marginTop for  
  */
 
 export default function EmailTemplateEditor({ 
   template, 
-  templateName = "Untitled Template", 
+  templateName = "Untitled Template",
+  headerHeight = 0,
   onSave 
 }: EmailTemplateEditorProps) {
   return (
@@ -42,6 +45,7 @@ export default function EmailTemplateEditor({
       <App 
         template={template} 
         templateName={templateName}
+        headerHeight={headerHeight}
         onSave={onSave}
       />
     </ThemeProvider>

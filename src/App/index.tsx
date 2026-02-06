@@ -23,6 +23,7 @@ interface AppProps {
   template?: TEditorConfiguration;
   templateName?: string;
   htmlTemplate?: string;
+  headerHeight?: number;
   onSave?: (blockTemplate: TEditorConfiguration, htmlTemplate: string, variables: Record<string, string>, templateName: string) => void;
 }
 
@@ -30,6 +31,7 @@ export default function App({
   template, 
   templateName: initialTemplateName = "Untitled Template", 
   htmlTemplate, 
+  headerHeight = 0,
   onSave
 }: AppProps) {
   const inspectorDrawerOpen = useInspectorDrawerOpen();
@@ -100,14 +102,16 @@ export default function App({
 
   return (
     <>
-      <InspectorDrawer />
+      <InspectorDrawer headerHeight={headerHeight} />
       <SamplesDrawer 
         templateName={templateName}
         onTemplateNameChange={handleTemplateNameChange}
+        headerHeight={headerHeight}
       />
 
       <Stack
         sx={{
+          marginTop: `${headerHeight}px`,
           marginRight: inspectorDrawerOpen ? `${INSPECTOR_DRAWER_WIDTH}px` : 0,
           marginLeft: samplesDrawerOpen ? `${SAMPLES_DRAWER_WIDTH}px` : 0,
           transition: [marginLeftTransition, marginRightTransition].join(', '),

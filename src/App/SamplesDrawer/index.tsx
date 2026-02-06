@@ -12,9 +12,10 @@ export const SAMPLES_DRAWER_WIDTH = 240;
 interface SamplesDrawerProps {
   templateName?: string;
   onTemplateNameChange?: (name: string) => void;
+  headerHeight?: number;
 }
 
-export default function SamplesDrawer({ templateName = "Template Name", onTemplateNameChange }: SamplesDrawerProps) {
+export default function SamplesDrawer({ templateName = "Template Name", onTemplateNameChange, headerHeight = 0 }: SamplesDrawerProps) {
   const samplesDrawerOpen = useSamplesDrawerOpen();
   const [isEditing, setIsEditing] = useState(false);
   const [editValue, setEditValue] = useState(templateName);
@@ -51,6 +52,10 @@ export default function SamplesDrawer({ templateName = "Template Name", onTempla
       open={samplesDrawerOpen}
       sx={{
         width: samplesDrawerOpen ? SAMPLES_DRAWER_WIDTH : 0,
+        '& .MuiDrawer-paper': {
+          top: `${headerHeight}px`,
+          height: `calc(100% - ${headerHeight}px)`,
+        },
       }}
     >
       <Stack spacing={3} py={1} px={2} width={SAMPLES_DRAWER_WIDTH} justifyContent="space-between" height="100%">

@@ -10,7 +10,11 @@ import VariablesPanel from './VariablesPanel';
 
 export const INSPECTOR_DRAWER_WIDTH = 320;
 
-export default function InspectorDrawer() {
+interface InspectorDrawerProps {
+  headerHeight?: number;
+}
+
+export default function InspectorDrawer({ headerHeight = 0 }: InspectorDrawerProps) {
   const selectedSidebarTab = useSelectedSidebarTab();
   const inspectorDrawerOpen = useInspectorDrawerOpen();
 
@@ -32,6 +36,10 @@ export default function InspectorDrawer() {
       open={inspectorDrawerOpen}
       sx={{
         width: inspectorDrawerOpen ? INSPECTOR_DRAWER_WIDTH : 0,
+        '& .MuiDrawer-paper': {
+          top: `${headerHeight}px`,
+          height: `calc(100% - ${headerHeight}px)`,
+        },
       }}
     >
       <Box sx={{ width: INSPECTOR_DRAWER_WIDTH, height: 49, borderBottom: 1, borderColor: 'divider' }}>
