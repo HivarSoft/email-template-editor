@@ -56,6 +56,7 @@ export default function SamplesDrawer({ templateName = "Template Name", onTempla
         '& .MuiDrawer-paper': {
           top: `${headerHeight}px`,
           height: `calc(100% - ${headerHeight}px)`,
+          marginLeft: `${marginLeftApp}px`,
         },
       }}
     >
